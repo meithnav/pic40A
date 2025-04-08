@@ -1,0 +1,78 @@
+**Assignment** 
+Build a simple company job application page. For simplicity let's consider company to be UCLA.
+
+
+**Instructions**
+
+1. Layout Structure for the content: 
+- Divide your page into three sections: <header>, <main>, and <footer>.
+
+
+2. Header Section (never confuse header section with head tag. 2 different things)
+- Company's name as main heading. (h1)
+- Add a `logo image`. I have provided the logo.
+
+
+3. Main Section
+- Company Intro:
+    -- Add a <h2> titled “About UCLA”
+    -- Write a brief paragraph about the company. Can include text formatting styles tags.
+
+- Requirements List
+    -- Add a <h2> titled “Requirements for Opening”
+    -- Create an unordered list with 3 “requirements for opening” (e.g., “Must have 2 years of experience,” “Proficiency in JavaScript,” etc.).
+
+
+- Pay‑Scale Table
+    -- Insert a table with headers “Region”, “Role”, and “Pay (k$)”.
+    -- Can use the folowing data: 
+e.g.
+Region 1 | SDE | 100
+Region 2 | PM | 100
+Region 3 | PM | 95
+
+
+- Horizontal Divider : Add a horizontal rule (<hr>) to partition content.
+
+
+- Login Form : The form should have:
+    -- a <h4> titled “Enter your details”
+    --  two text inputs for "First Name" and "Last Name"
+    -- accept file input for "Upload Resume"
+    -- drop-down menu to select the "Location"
+    -- "age" field to enter numeric age. 
+    -- "Relocate" field with radio buttons having items yes/no
+    -- a submit <button> labeled “Submit”.
+    -- a reset <button> labeled Reset.
+
+
+NOTE: Does the buttons work? No? So we will make use of ``HTML forms`` now.
+
+
+4. Footer Section
+
+- Horizontal Divider : Add a horizontal rule (<hr>) to partition from the main.
+
+- Additional Resources Section: 
+    -- a <h4> titled “Enter your details”
+    -- Create an unordered list having “About”, “Careers”, and “Contact”. Note I don't want the bullets to be seen. How would you remove them?
+    -- All the items should be a link pointing to #(dummy) for simplicity.
+
+
+- Horizontal Divider
+
+- Copyright section. 
+    -- In italics, write: “© Your Name, 2025”.
+
+
+5. Improving our webpage: 
+
+- if you notice in our header the company name and logo are on different lines? why so? How to bring them on the same line?
+
+
+- Right now form buttons don't work. 
+- Additional Form updates --> 
+    -- Imporve the structure of the form. all text fields in new line. 
+    -- All the text fields must be complusory. Can't submit by leaving anything blank. 
+    -- the upload button should only consider file types (pdf,docx) not images. 
+    -- Submit should redirect to a `new page` (e.g. index.html or success.html) once clicked. 

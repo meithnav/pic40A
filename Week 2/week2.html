@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--  -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>UCLA page</title>
+  </head>
+
+  <!--  -->
+
+  <body>
+    <header>
+      <h1>University of California, Los Angeles</h1>
+      <img src="logo.png" alt="Company Logo" width="100" height="100" />
+    </header>
+
+    <!-- You might not want company name in the left and image down. To have it on the same line we use table. But it is much easier to adjust the shape and positioning through css. We only use HTML to define the components and all sizing shaping is done by CSS. Below I share an example of trying to put the company name and logo in the same line. -->
+    <!-- <header>
+      <table width="100%">
+        <tr>
+          <td align="left">
+            <h1>University of California, Los Angeles</h1>
+          </td>
+          <td align="right">
+            <img src="logo.png" alt="Company Logo" width="100" height="100" />
+          </td>
+        </tr>
+      </table>
+    </header> -->
+
+    <hr />
+
+    <main>
+      <!-- About -->
+      <h2>About UCLA</h2>
+      <p>
+        UCLA is a no. 1 public school ... good students .. dining halls
+        ...worldwide. ``feel free to info using style tags``
+      </p>
+
+      <!-- Requirements List -->
+      <h2>Requirements for Opening</h2>
+      <ul>
+        <li>Minimum 2 years of industry experience</li>
+        <li>Proficiency in JavaScript and modern frameworks</li>
+        <li>Strong problem‑solving and communication skills</li>
+      </ul>
+
+      <br />
+
+      <!-- Pay‑Scale Table -->
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Region</th>
+            <th>Role</th>
+            <th>Pay (k$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Region 1</td>
+            <td>SDE</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Region 2</td>
+            <td>PM</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Region 3</td>
+            <td>PM</td>
+            <td>95</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr />
+
+      <!-- Login Form -->
+
+      <!-- MAKING FORMS -> 1. Using label, input, buttons tags -->
+      <h3>Enter your details</h3>
+      <div>
+        <div>
+          <label for="fname">First Name:</label>
+          <input type="text" id="fname" name="fname" />
+        </div>
+        <div>
+          <label for="lname">Last Name:</label>
+          <input type="text" id="lname" name="lname" />
+        </div>
+        <div>
+          <label for="resume">Upload Resume:</label>
+          <input type="file" id="resume" name="resume" />
+        </div>
+        <div>
+          <label for="location">Location:</label>
+          <select id="location" name="location">
+            <option value="los_angeles">Los Angeles</option>
+            <option value="san_francisco">San Francisco</option>
+            <option value="new_york">New York</option>
+          </select>
+        </div>
+        <div>
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" min="18" max="100" />
+        </div>
+        <div>
+          <fieldset>
+            <legend>Relocate:</legend>
+            <div>
+              <input
+                type="radio"
+                id="relocate_yes"
+                name="relocate"
+                value="yes"
+              />
+              <label for="relocate_yes">Yes</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="relocate_no"
+                name="relocate"
+                value="no"
+                checked
+              />
+              <label for="relocate_no">No</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit">Submit</button>
+        <!-- <button type="submit" onclick="window.location.assign('success.html');"> Submit </button> -->
+
+        <button type="reset">Reset</button>
+      </div>
+
+      <!-- USING HTML forms -->
+      <!-- <h3>Enter your details</h3>
+      <form action="success.html" method="post" enctype="multipart/form-data">
+        <div>
+          <label for="fname">First Name:</label>
+          <input type="text" id="fname" name="fname" required />
+        </div>
+        <div>
+          <label for="lname">Last Name:</label>
+          <input type="text" id="lname" name="lname" required />
+        </div>
+        <div>
+          <label for="resume">Upload Resume:</label>
+          <input
+            type="file"
+            id="resume"
+            name="resume"
+            accept=".pdf, .docx"
+            required
+          />
+        </div>
+        <div>
+          <label for="location">Location:</label>
+          <select id="location" name="location" required>
+            <option value="los_angeles">Los Angeles</option>
+            <option value="san_francisco">San Francisco</option>
+            <option value="new_york">New York</option>
+          </select>
+        </div>
+        <div>
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            min="18"
+            max="100"
+            required
+          />
+        </div>
+        <div>
+          <fieldset>
+            <legend>Relocate:</legend>
+            <div>
+              <input
+                type="radio"
+                id="relocate_yes"
+                name="relocate"
+                value="yes"
+                required
+              />
+              <label for="relocate_yes">Yes</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="relocate_no"
+                name="relocate"
+                value="no"
+                checked
+                required
+              />
+              <label for="relocate_no">No</label>
+            </div>
+          </fieldset>
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form> -->
+
+      <!-- ALTERNATIVE is Method 1 + Using JSX which we will see later in the course -->
+    </main>
+
+    <hr />
+
+    <footer>
+      <h4>Additional Resources</h4>
+      <ul type="none">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <hr />
+
+      <em>© Your Name, 2025</em>
+    </footer>
+  </body>
+  <!--  -->
+</html>
