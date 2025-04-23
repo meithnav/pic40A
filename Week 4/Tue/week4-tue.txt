@@ -1,0 +1,27 @@
+### Week 4 Tue ###
+
+- Our goal is to create an interactive `Login Page.` 
+- User enters its credentials (email id and password), we first valid the credentials and redirect to home.html if its correct else display and error alert. 
+- We also aim to explore some JS event listeners in this assignment. 
+
+
+
+For our `login.html` => 
+
+a. Make a form with "Email", "Password" fields. "Submit", "Show Password" button. Remeber to give each field an `id` so we could uniquely identify them later. 
+
+b. 
+- Once form is done we move to the validation part. 
+- We validate once the user clicks submit. For simplicity we compare with [email==pic@gmail.com and password==12345]
+- If both match then in the `alert box` print the message "Logged in :)" and redirect to `home.html`
+- If incorrect then in the `alert box` print the message "Wrong Creds :("
+
+c. Add a functionality that toggles the type of password to text so as to see the passowrd when clicked. 
+
+d. Add a functionality(event listenser) that logs(prints) "Email field focused" to the console when the input field is clicked(in focus)
+
+e. Add a functionality(event listenser) that logs(prints) "Password is too short" to the console when user blurs(out of focus) from the Password field and the length<5
+
+f. Add a functionality(event listenser) that changes the Submit button text to "Ready to Login?" when hovered over it
+
+

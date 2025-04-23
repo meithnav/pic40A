@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Login Page</title>
+
+    <!-- CSS  -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+      }
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      input,
+      button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      #togglePwd {
+        width: auto;
+      }
+    </style>
+    <!-- END CSS  -->
+  </head>
+
+  <body>
+    <!--1. Make a form  -->
+    <h2>Login Page</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="password" placeholder="Password" required />
+      <button type="button" id="togglePwd">Show Password</button>
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    <!--End form -->
+
+    <!-- JS CODE -->
+    <script>
+      // 2. Declare Valid credentials variables
+      const validEmail = "pic@gmail.com";
+      const validPassword = "12345";
+
+      // 3. make variables for all the targeted components here.
+      const form = document.getElementById("loginForm");
+      const emailInput = document.getElementById("email");
+      const pwdInput = document.getElementById("password");
+      const toggleBtn = document.getElementById("togglePwd");
+
+      // 4. `Submit` listener => validate credentials
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        const pwd = pwdInput.value;
+        if (email === validEmail && pwd === validPassword) {
+          alert("Logged in :)");
+          window.location.href = "home.html";
+        } else {
+          alert("Wrong credentials :(");
+        }
+      });
+
+      // 5. Toggle password visibility
+      toggleBtn.addEventListener("click", function (e) {
+        const type =
+          pwdInput.getAttribute("type") === "password" ? "text" : "password";
+        pwdInput.setAttribute("type", type);
+        
+        this.textContent =
+          type === "password" ? "Show Password" : "Hide Password";
+      });
+
+      // 6. Email field focus listener
+      emailInput.addEventListener("focus", function () {
+        console.log("Email field focused");
+      });
+
+      // 7. Password field blur listener: check length
+      pwdInput.addEventListener("blur", function () {
+        if (pwdInput.value.length < 5) {
+          console.log("Password is too short");
+        }
+      });
+
+      // 8. Submit button mouseover listener: change text
+      document
+        .getElementById("submitBtn")
+        .addEventListener("mouseover", function () {
+          this.textContent = "Ready to Login?";
+        });
+      document
+        .getElementById("submitBtn")
+        .addEventListener("mouseout", function () {
+          this.textContent = "Submit";
+        });
+    </script>
+    <!-- END JS CODE -->
+  </body>
+</html>
