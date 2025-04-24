@@ -1,40 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Discussion Week 4</title>
-  <!-- CSS -->
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .header { text-align: center; margin-bottom: 20px; }
-    .forum { max-width: 600px; margin: 0 auto; }
-    .message { border-bottom: 1px solid #ccc; padding: 10px 0; }
-    .username { font-weight: bold; margin-bottom: 5px; }
-  </style>
-  <!-- END CSS -->
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Discussion Week 4</title>
 
-<body>
-  <h1 class="header">Welcome to Discussion Week 4</h1>
-  <div class="forum">
-    <div class="message">
-      <div class="username">Alice</div>
-      <div class="text">Hey everyone, has anyone started Problem 3 yet?</div>
-    </div>
-    <div class="message">
-      <div class="username">Bob</div>
-      <div class="text">I just finished Problem 1 and it was tricky!</div>
-    </div>
-    <div class="message">
-      <div class="username">Carol</div>
-      <div class="text">Problem 2 took me a while, but I got it working.</div>
-    </div>
-    <div class="message">
-      <div class="username">Dave</div>
-      <div class="text">
-        I figured out <a href="#" onclick="window.open('problem3.html','_blank'); window.location.href='logim.html'; return false;">Problem 3.</a> Feel free to refer the solution!!!
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .forum {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .message {
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+      }
+      .username {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      /* New form styles */
+      .comment-form {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+      .comment-form input,
+      .comment-form textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+      }
+      .comment-form button {
+        padding: 8px 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="header">Welcome to Discussion Week 4</h1>
+    <div class="forum" id="forum">
+      <div class="message">
+        <div class="username">Alice</div>
+        <div class="text">Hey everyone, has anyone started Problem 3 yet?</div>
       </div>
+      <div class="message">
+        <div class="username">Bob</div>
+        <div class="text">I just finished Problem 1 and it was tricky!</div>
+      </div>
+      <div class="message">
+        <div class="username">Carol</div>
+        <div class="text">Problem 2 took me a while, but I got it working.</div>
+      </div>
+      <div class="message">
+        <div class="username">Dave</div>
+        <div class="text">
+          I figured out
+          <a
+            href="#"
+            onclick="window.open('problem3.html','_blank'); window.location.href='logim.html'; return false;"
+          >
+            Problem 3.
+          </a>
+          Feel free to refer the solution!!!
+        </div>
+      </div>
+
+      <!-- Comment form -->
+      <form id="commentForm" class="comment-form">
+        <input
+          type="text"
+          id="usernameInput"
+          placeholder="Your name"
+          required
+        />
+        <textarea
+          id="messageInput"
+          rows="3"
+          placeholder="Your comment"
+          required
+        ></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
     </div>
-  </div>
-</body>
+
+    <script>
+      document
+        .getElementById("commentForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // prevent page reload
+
+          const user = document.getElementById("usernameInput").value.trim();
+          const msg = document.getElementById("messageInput").value.trim();
+          if (!user || !msg) return;
+
+          // build new message element
+          const msgDiv = document.createElement("div");
+          msgDiv.classList.add("message");
+
+          const nameDiv = document.createElement("div");
+          nameDiv.classList.add("username");
+          nameDiv.textContent = user;
+
+          const textDiv = document.createElement("div");
+          textDiv.classList.add("text");
+          // <<< here we parse HTML tags instead of escaping them
+          textDiv.innerHTML = msg;
+
+          msgDiv.appendChild(nameDiv);
+          msgDiv.appendChild(textDiv);
+
+          // insert above form and reset
+          const forum = document.getElementById("forum");
+          forum.insertBefore(msgDiv, document.getElementById("commentForm"));
+          this.reset();
+        });
+    </script>
+  </body>
 </html>
