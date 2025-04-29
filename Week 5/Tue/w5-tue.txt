@@ -1,0 +1,5 @@
+JSX uses `objects`. We have seen classes and objects in C++ and Python. Consider class as a container/blueprint that wraps data variables and methods together. Objects are instantiation of those classes (which on a higher level is like any variable declaration). 
+
+
+IN JSX, all the variables are objects by default. If you have notied, all the variables come with built-in functions, what are these? Methods of the variables which was defined in their class wrappers under the hood. 
+
