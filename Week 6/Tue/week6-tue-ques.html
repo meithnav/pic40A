@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UCLA PIC Shopping page</title>
+  <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: sans-serif;
+      }
+      header {
+        background: #004b8d;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+      .container {
+        display: flex;
+        height: calc(100% - 60px);
+      }
+      .products {
+        width: 80%;
+        overflow-y: auto;
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Fixed to 3 columns */
+        grid-gap: 1rem;
+      }
+      .product {
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+        text-align: center;
+        height: 300px; /* Fixed height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .product img {
+        height: 60%; /* 60% of card height */
+        width: 80%;
+        margin: auto;
+        object-fit: cover;
+      }
+      .sidebar {
+        width: 20%;
+        border-left: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+      }
+      .cart {
+        flex: 0 0 60%;
+        overflow-y: auto;
+        padding: 0.5rem;
+      }
+      .checkout {
+        flex: 1;
+        padding: 0.5rem;
+        border-top: 1px solid #ccc;
+      }
+      .cart-item {
+        display: flex;
+        margin-bottom: 0.5rem;
+      }
+      .cart-item img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        margin-right: 0.5rem;
+      }
+      button {
+        padding: 0.3rem 0.6rem;
+        margin: 0.2rem 0;
+        cursor: pointer;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        margin: 0.3rem 0;
+      }
+      .empty {
+        font-style: italic;
+        color: #666;
+      }
+      
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Bruins like to Shop</h1>
+</header>
+
+<div class="container">
+  <!-- Products Panel -->
+  <div class="products" id="products"></div>
+
+  <!-- Sidebar: Cart + Checkout -->
+  <div class="sidebar">
+    <!-- Cart -->
+    <div class="cart">
+      <div class="row">
+        <strong>Your cart</strong>
+        <button id="refreshCart">Refresh</button>
+      </div>
+      <div id="cartList" class="empty">Empty Cart</div>
+    </div>
+
+    <!-- Checkout -->
+    <div class="checkout">
+      <h3>Checkout</h3>
+      <div class="row"><span>Total cart</span><span id="totalCost">$0.00</span></div>
+      <div class="row"><span>Shipping</span><span id="shippingAmt">$0.00</span></div>
+      <div class="row"><span>Tax (10%)</span><span id="taxAmt">$0.00</span></div>
+      <div class="row"><span>Handling Services</span><span id="handlingAmt">$0.00</span></div>
+      <div id="promoRow" class="row" style="display:none;">
+        <span>Promo</span><span id="promoStatus">$0.00</span>
+      </div>
+      <div class="row">
+        <button id="applyPromoBtn">Add promocode</button>
+      </div>
+      <div class="row">
+        <button id="computeBill">Compute bill</button>
+        <button id="clearCheckout">Clear</button>
+      </div>
+      <div class="row">
+        <button id="buyBtn">Buy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// 1. Define products information. This is static way of storing our dataset. Later, we will retrieve it from DB.
+  const productsData = [
+    { id:1, name:"Classic UCLA Hoodie", price:79.99, img:"https://cdn.shoplightspeed.com/shops/616371/files/53697154/image.jpg" },
+    { id:2, name:"Bruin Cap", price:12.49, img:"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR-DFYOzdxlPJ86S4bqvKvVcfXNVF3KhPhqYl4_1yyBkIpUUPfxvijxVTBfp6Io0JP1D4U_3AgdTvao_Zk2wbNrKvaugYj-pn_cbG0QJPu6G9TB5geGuNhPE0zROHHjga0qdZxRAA&usqp=CAc" },
+    { id:3, name:"UCLA Jersey", price:39.99, img:"https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/69258c2c-33d1-4b5e-9cae-33dbc8542171/M+Nk+Player+Game+Jersey.png" },
+    { id:4, name:"Campus Mug", price:9.99, img:"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSsXXBPdk1rudRubkPKJo0t8d4QFWA9deORbKTsuzmYAbRuB2EbAyueyjwzo5NheMwPu3X4E3IIjJccl6nTfLk6xHSuyHcta23A0u-TyCqHYYIjlVg6_2uSFFjpnANWlfj7JkDIwuo&usqp=CAc" },
+    { id:5, name:"Joe the Bear", price:24.99, img:"https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ1lHZzl1Mk9WVrH7g7mIO70tRAuHBW0f1SLmwIyqXW1C6IOI74r4gP504WHyi5FEYFacinDTSuUi3EzcxUyDfcF9ub--0_ZS_YGhS7jDiIQReK5pqK-2CFMsWxBeCb9TTqhzpF-4Vk8EI&usqp=CAc" },
+  ];
+
+  
+// 2. Define variables: 
+  let cart = []; // handles list of products in the cart
+  let appliedPromo = 0; // default promo amt is 0. 
+
+/// ############################# //  
+// ############################# //
+  //3. Populate product grid with products
+  const productsEl = document.getElementById('products');
+  
+  productsData.forEach(p => { //loop through eavh product and add. 
+
+  });
+
+// ############################# //
+// ############################# //
+ // 4. Add to cart
+function addToCart(id) {
+  
+}
+
+// ############################# //
+// ############################# //
+  // 5. Refresh cart
+  function renderCart() {
+
+  }
+
+  document.getElementById('refreshCart').onclick = renderCart;
+
+
+// ############################# //
+// ############################# //
+  // 6. Apply promo code
+  document.getElementById('applyPromoBtn').onclick = () => {
+    const code = prompt("Enter promocode (5Dollar or 10Dollar):");
+    const disc = code === '5Dollar' ? 5 : code === '10Dollar' ? 10 : 0;
+    
+
+    // invalid code or vaid code 
+
+    // limit the min-max discount 
+
+    // update the total 
+
+    // add a new block for promo code amt 
+
+
+  };
+
+
+// ############################# //
+// ############################# //
+  //7. Compute bill
+  document.getElementById('computeBill').onclick = () => {
+    const total = cart.reduce((s, i) => s + i.price, 0);
+    const shipping = cart.length ? 4.99 : 0; // we have fixed value for shipping
+    const tax     = total * 0.10; // we have fixed value 10%
+    const handling= cart.length ? 5.00 : 0; // we have fixed value for shipping
+
+    // update the values in the DOM
+
+
+
+  };
+
+
+// ############################# //
+// ############################# //
+  //8. Clear checkout
+  document.getElementById('clearCheckout').onclick = () => {
+    appliedPromo = 0;
+    ['totalCost','shippingAmt','taxAmt','handlingAmt','promoStatus'].forEach(id =>
+      document.getElementById(id).innerText = '$0.00'
+    );
+    document.getElementById('promoRow').style.display = 'none';
+  };
+
+
+// ############################# //
+// ############################# //
+  //9. Buy action
+  document.getElementById('buyBtn').onclick = () => {
+   
+
+  };
+  
+</script>
+
+</body>
+</html>
+
+
+
+
+<!-- ######################################################### -->
+
+<!-- -- Future Improvements  -->
+
+<!-- 1. Right now we have static tax system. We need to add a drop-down menu for lets say 5 states e.g. CA, NY, ... and associate 10%, 5%, 0% etc taxes to the corresponding state and then compute the tax and total bill amount.   -->
+
+<!-- 2. Minor fixes: In my checkout I forgot to add `Final Amount` line at the end that computes total payment due after tax, discount and promo. Add it. Also it should update whenever I add/update the promocode.  -->
+
+
+<!-- 3. `Remove from cart` feature for every product in the cart. It also updates the list of products and total billing page.  Additionally, `clear cart button` beside the `Refresh` to flush out all the products in 1 go. -->
+
+<!-- 4. Whenever, I add the same product, it creates a new entry in the cart. We should have a new attribute `Qnty` in the cart products that appends to these entries and update the `Qnty` instead of making new entries. With that, allow user to update the `Qnty` in the cart and if Qnty==0, it is equivalent to `remove from cart` feature. -->
+
+<!-- _. You might have noticed I have to click on `Compute bill` and `Refresh cart` everytime to see the updated list and amount. Its not dynamically updating. For real-time updates we can manipulate it using JS by calling refresh functions in the appropriate eventHandler functions or use AJAX when dealing with JS. -->
+
+<!-- ######################################################### -->
