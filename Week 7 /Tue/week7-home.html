@@ -9,9 +9,13 @@
     <button id="logoutBtn">Logout</button>
   </div>
 
-  
+
 <!-- Attempt 1 for cookies -->
   <script>
+
+    //EXTRA: Log all cookies
+    console.log("Cookies: ", document.cookie);
+
     // Helper to get a cookie by name
     function getCookie(name) {
       const cookies = document.cookie.split("; ");
@@ -24,23 +28,24 @@
 
     // Display greeting
     const username = getCookie("username");
+
     if (username) {
       document.getElementById("greeting").innerText = `Hello ${username}`;
     } else {
       document.getElementById("greeting").innerText = `Hello. Please Sign in !!`;
     }
 
-    // Log all cookies
-    console.log("Cookies: ", document.cookie);
 
     // Logout function
     document.getElementById("logoutBtn").addEventListener("click", function() {
+      
       // Set cookies to expire in the past
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.getElementById("greeting").innerText = "Hello. Please Sign in !!";
       console.log("Cookies after logout: ", document.cookie);
     });
+
   </script>
 
   
