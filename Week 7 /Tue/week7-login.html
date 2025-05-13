@@ -13,18 +13,29 @@
 
   <!-- Attempt 1 for cookies -->
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    document.getElementById("loginForm").addEventListener("submit", function(e){
       e.preventDefault();
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
 
-      // Set cookie with 1 hour expiry
+      // Set date object that is 1 hour in the future
       const expiryDate = new Date();
-      expiryDate.setTime(expiryDate.getTime() + (60 * 60 * 1000)); // 1 hour
+      expiryDate.setTime(expiryDate.getTime() + (60 * 60 * 1000)); // 1 hour => Date objects store time in milliseconds
 
+      // EXTRA: new Date(year, month, day, hours, minutes, seconds, milliseconds): Creates a Date object with the specified date and time components. Note that the month is zero-based (0 for January, 11 for December)
+
+      
+      // create cookie
       document.cookie = `username=${username}; expires=${expiryDate.toUTCString()}; path=/`;
       document.cookie = `password=${password}; expires=${expiryDate.toUTCString()}; path=/`;
 
+      // - path=/: Cookie is available across the entire domain.
+      // - path=/directory/: Cookie is available only within the /directory/ and its subdirectories.
+      // - If no path is specified: Cookie is only available on the current page.
+
+      
+
+      // re-direct to home
       window.location.href = "week7-home.html";
 
     });
