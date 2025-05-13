@@ -86,18 +86,21 @@
       
   </style>
 </head>
-<body>
 
+
+<body>
 <header>
   <h1>Bruins like to Shop</h1>
 </header>
 
 <div class="container">
+
   <!-- Products Panel -->
   <div class="products" id="products"></div>
 
   <!-- Sidebar: Cart + Checkout -->
   <div class="sidebar">
+
     <!-- Cart -->
     <div class="cart">
       <div class="row">
@@ -152,7 +155,7 @@
   //3. Populate product grid with products
   const productsEl = document.getElementById('products');
   
-  productsData.forEach(p => { //loop through eavh product and add. 
+  productsData.forEach(p => { //loop through each product and add. 
 
     const div = document.createElement('div');
     div.className = 'product';

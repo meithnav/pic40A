@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+
+
+<body>
+  <h2>Login Page</h2>
+  <form id="loginForm">
+    <label>Username:</label><input type="text" id="username" required /><br />
+    <label>Password:</label><input type="password" id="password" required /><br />
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    
+    // make an eventlistener(action, function(e){
+
+      // retrive the values from the form 
+
+        // Set 1 hour expiry timing
+
+        // create a cookie
+        
+        // re-locate to home.html
+
+    // });
+
+
+    // Once done read the NOTE below to run the file. 
+
+
+
+    // This technique is a naive way of making cookies.  Can you identify the errors and redandancies? 
+
+    // Lets improve it then :) 
+   
+  </script>
+</body>
+</html>
+
+
+
+<!-- 
+
+// NOTE: cookies dont typically work with HTML files. We need to maintain a session for that. S  we use: 
+
+1. Go to your folder(command line/terminal)
+>> cd path/to/your/folder
+
+2. Start our server
+>> python3 -m http.server 8000
+
+3. this is our url(path)
+http://localhost:8000/ 
+
+-->
+
+
+<!--
+
+#### Additional Facts ####
+
+## Cookie Expiration: 
+- Cookies expire at the date set using expires or max-age.
+- Without an expiration, the cookie is a session cookie and disappears on browser close.
+
+
+## Cookie Path & Scope
+- If path is not set to /, the cookie is available only to the current path.
+- Always use path=/ to make cookies accessible across pages (like from login.html to home.html).
+
+
+## Security Notes
+- Never store passwords in cookies in real applications.
+- Use HttpOnly and Secure flags (via server-side code) to prevent XSS and other attacks.
+
+
+## Common Misconceptions / Tricky Issues
+❌ Reading cookies doesn’t give a `JSON object` document.cookie returns a `string` like: username=abc; password=123. You must manually parse it using string operations or a helper.
+
+❌ Deleting a cookie requires matching path. You must delete it with the same path you set it with, or the cookie will persist. 
+
+-->

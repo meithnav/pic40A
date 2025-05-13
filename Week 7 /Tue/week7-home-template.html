@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+</head>
+<body>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2 id="greeting">Hello</h2>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+
+
+<!-- Attempt 1 for cookies -->
+  <script>
+
+    //EXTRA:  Log all cookies
+    console.log("Cookies: ", document.cookie);
+    
+
+    // Helper to get a cookie by name
+    function getCookie(name) {
+      //....
+    }
+
+    // Display username in the greeting
+    const username = getCookie("username");
+
+
+   // update the greeting header using if-else 
+
+
+    // Logout function
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+      // Set cookies to expire in the past
+      
+      
+      // EXTRA: check if cookies died
+      console.log("Cookies after logout: ", document.cookie);
+    });
+  </script>
+
+  
+  <!-- ## updated script. to parse through the loginCred object -->
+  <!-- <script>
+    // mainly everyhing remains the same. Instead here our handle 1 object instead of 2 variables. 
+  </script> -->
+
+</body>
+</html>
