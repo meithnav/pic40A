@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JQuery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <!-- QUES 1, 2-->
+    <ul id="fruits" class="fruits">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Cherry</li>
+      </ul>
+
+    <!-- QUES 3-->
+    <button id="clickMe">Click me</button> 
+      
+
+      <!-- QUES 4,5,7 -->
+      <div id="container">
+        <p id="para1">Paragraph 1</p>
+      </div>
+      <div id="box"></div>
+
+
+      <!-- QUES 6,8 -->
+      <ul class="nav">
+        <li class="parent">
+          Menu
+          <ul class="submenu" style="display: none;">
+            <li>Sub 1</li>
+            <li>Sub 2</li>
+          </ul>
+        </li>
+      </ul>
+      
+
+      <!-- QUES 9 -->
+      <form id="signup">
+        <input type="email" id="email" />
+        <div id="error" style="color:red;"></div>
+        <button type="submit">Submit</button>
+      </form>
+      
+  
+      <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+<script>
+
+// Why jQuery? 
+
+// - Cross‑Browser Normalization: Earlier, every browser had its own DOM quirks. jQuery wrapped away these differences so developers could write one uniform API that just worked.
+
+// - Simplified Syntax: Rather than document.getElementById('foo').style.display='none', jQuery offered $('#foo').hide(), making code shorter and more readable.
+
+// - Rapid Plugin Ecosystem: From sliders to date‑pickers, jQuery’s plugin architecture let the community extend core features without altering the base library.
+
+// The jQuery library contains the following features:
+// HTML/DOM manipulation
+// CSS manipulation
+// HTML event methods
+// Effects and animations
+// AJAX
+// Utilities
+
+// REFERENCE: https://medium.com/@gtrz.pamela/jquery-saves-the-day-a-history-fb711f8779a9
+
+
+// ############################ //
+// ADVANTAGES: 
+
+// 1. Chaining: Methods return the jQuery object itself, enabling chained operations:
+// $('#btn')
+//   .text('Loading…')
+//   .prop('disabled', true)
+//   .addClass('loading');
+
+
+// 2. Animation Helpers: 
+// Built‑in methods like .fadeIn(), .slideUp(), and .animate() let you add polished UI effects in a few lines 
+
+
+// 3. AJAX Simplification: REST APIs 
+// $.ajax(), $.get(), and $.post() abstract the verbose XMLHttpRequest boilerplate into a single call with callbacks
+
+
+// ############################ //
+// NOTE: Before using JQuery we need to include it into our webpage. You can: 
+// (a) Download the jQuery library from jQuery.com
+// (b) Include jQuery from a CDN, like Google
+
+
+// ############################ //
+// SYNTAX:
+
+// ``$(selector).action()``
+
+// `$` => define/access jQuery
+// `(selector)` => to help find the HTML elements
+// action() => actually meyhod we invoke to perform some DOM manipulation on the element(s)
+
+// SELECTORS: 
+// (a) $("p") => directly seelcting the tags. Here, you select all <p> elements on a page
+// (b) $("#test") => find an element with a `specific id`, write a `hash character`, followed by the id of the HTML element
+// (c) $(".test") => find elements with a `specific class`, write a `period character`, followed by the name of the class
+// (d) $("ul li:first-child") => Advanced selectors. Selects the `first <li> element` of every `<ul>`. More info on Advanced selectors: https://www.w3schools.com/jquery/jquery_ref_selectors.asp
+
+// ############################ //
+// Document Ready Event:
+
+  // $(document).ready(function(){
+
+      // jQuery methods go here...
+
+  // });
+
+
+  // to prevent any jQuery code from running before the document is finished loading (is ready)
+
+
+// ############################ //
+// ##########QUESTIONS########## //
+// ############################ //
+
+    // QUES 1: How to access DOM elements, classes and ids in JQuery
+    
+
+    // QUES 2: Write a jQuery snippet to select all <li> items and change their text color to red.
+
+
+    // QUES 3: Event Handling: Given a button #clickMe, write jQuery code to show an alert with “Hello, jQuery!” when the button is clicked.
+
+
+    // QUES 4: jQuery HTML: 
+        // (a) Append a new <p> with text “Hello, jQuery!” to the <div id="container">.
+        // (b) Remove the paragraph you just added after 2 seconds.
+
+
+    // QUES 5: jQuery HTML: 
+        // (a) Given <p id="para1">, write jQuery to add a class highlight and an ID newPara to it.
+        // (b) Then remove that class and ID when a button with ID togglePara is clicked.
+
+        
+    // QUES 6: DOM Traversal in a nested list.
+        // (a) Using the .submenu inside .parent, select all submenu <li> items and log their text to the console.
+        // (b) From each .submenu li, traverse back to the top-level .parent and add a CSS border around it.
+
+
+    // QUES 7: jQuery Effects: For a <div id="box"></div>, chain jQuery methods to:
+        // (a) Append the text “Loading…”
+        // (b) Fade the box out over 400 ms. 
+        // (c) Once hidden, change its background to blue and fade it back in over 200 ms.
+
+
+    // QUES 8: Write jQuery to when hover on `.parent` it slides down `.submenu` and slides up on mouse leave.
+
+    
+    // QUES 9: Use jQuery to prevent submission if the email field is empty, and display an inline error message below the input.
+
+
+
+    // ######################### //
+    // ANSWERS: 
+
+    $(document).ready(function() {
+
+
+        // Q1: Accessing DOM elements, classes, and IDs
+        $('p');           // selects all <p> elements
+        $('.fruits');     // selects elements with class="fruits"
+        $('#container');  // selects the element with id="container"
+      
+
+
+
+       
+        // Q2: Select all <li> items and change their text color to red
+        $('#fruits li').css('color', 'red');
+      
+
+
+
+
+       
+        // Q3: Show an alert when the button is clicked
+        $('#clickMe').on('click', function() {
+          alert('Hello, jQuery!');
+        });
+      
+
+
+
+
+        // Q4: Append a new <p>, then remove it after 2 seconds
+        $('#container')
+          .append('<p id="temp">Hello, jQuery!</p>');
+        setTimeout(function() {
+          $('#temp').remove();
+        }, 2000);
+      
+
+
+
+
+       
+        // Q5: Add a class and ID, then remove them on button click
+        $('#para1').addClass('highlight').attr('id', 'newPara');
+        $('#togglePara').on('click', function() {
+          $('#newPara')
+            .removeClass('highlight')
+            .removeAttr('id');
+        });
+      
+
+
+
+
+       
+        // Q6: DOM traversal in a nested list
+        // (a) Log each submenu item’s text
+        $('.parent .submenu li').each(function() {
+          console.log($(this).text());
+        });
+        // (b) From each submenu <li>, traverse up to .parent and add a border
+        $('.submenu li').each(function() {
+          $(this).closest('.parent').css('border', '1px solid #000');
+        });
+      
+
+
+
+       
+
+        // Q7: Chain methods on #box for text, fade out, change bg, fade in
+        $('#box')
+          .text('Loading…')
+          .fadeOut(400, function() {
+            $(this)
+              .css('background', 'blue')
+              .fadeIn(200);
+          });
+      
+
+
+
+       
+        // Q8: Slide submenu down on hover, up on mouse leave
+        $('.parent').hover(
+          function() { // mouseenter
+            $(this).find('.submenu').stop(true).slideDown();
+          },
+          function() { // mouseleave
+            $(this).find('.submenu').stop(true).slideUp();
+          }
+        );
+      
+
+
+
+       
+        // Q9: Prevent form submission if email is empty, show inline error
+        $('#signup').on('submit', function(e) {
+          var emailVal = $('#email').val().trim();
+          if (!emailVal) {
+            e.preventDefault();
+            $('#error').text('Please enter your email.');
+          }
+        });
+      });
+      
+  </script>
+
+</body>
+</html>
